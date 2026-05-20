@@ -1,0 +1,526 @@
+/* =========================
+   GENERAL
+========================= */
+
+html,
+body,
+#app{
+    min-height:100%;
+    overflow-x:hidden;
+}
+
+body{
+    font-family:'Playfair Display', serif;
+    background-color:#ffffff;
+    margin:0;
+    padding:0;
+}
+
+.layout-body{
+    min-height:100vh;
+}
+
+
+
+.logo-login{
+    width:85px;
+    height:85px;
+    margin-bottom:20px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.menu-header{
+    background-color:#cae2e6;
+    padding:10px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.menu-header h1{
+    font-size:32px;
+}
+
+.titulo-gara{
+    font-size:4rem;
+    color:#192718 !important;
+    text-decoration:none !important;
+    font-weight:500;
+    line-height:1;
+}
+
+.subtitulo-gara{
+    font-size:1.1rem;
+    color:#333;
+    margin-top:10px;
+}
+
+/* =========================
+   ICONOS HEADER
+========================= */
+
+.iconos-header{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.iconos-header a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:black;
+    font-size:1.4rem;
+    text-decoration:none;
+    margin-left:15px;
+}
+
+/* =========================
+   MENU LATERAL
+========================= */
+
+.offcanvas{
+    max-width:300px;
+}
+
+.offcanvas-body{
+    overflow-y:auto;
+}
+
+.menu-title{
+    font-size:2.5rem;
+    color:#192718;
+}
+
+.list-group a{
+    width:100%;
+    text-align:center;
+    padding:18px 0;
+    text-decoration:none;
+    color:#000;
+    border-bottom:1px solid #ddd;
+}
+
+.menu-list a{
+    font-size:1.1rem;
+    letter-spacing:1px;
+}
+
+.menu-scroll{
+    padding-bottom:40px;
+}
+
+.menu-img-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 0;
+}
+
+.menu-img{
+    width:230px;
+    display:block;
+    margin:auto;
+    opacity:0.9;
+}
+
+/* =========================
+   SEPARADORES
+========================= */
+
+.separador{
+    background-color:#d4e2f1;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:20px;
+    color:#192718;
+    padding:8px;
+    margin-top:20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer-gara{
+    background-color:#cfdddf;
+    padding:15px;
+    text-align:center;
+    font-family:'Courier New', Courier, monospace;
+}
+
+footer a,
+.footer-gara a{
+    color:black;
+    text-decoration:none;
+    margin:0 10px;
+    font-size:20px;
+}
+
+/* =========================
+   TEXTO GENERAL
+========================= */
+
+small{
+    color:#333;
+}
+
+/* =========================
+   CARRITO
+========================= */
+
+#contadorCarrito{
+    position:absolute;
+    top:-5px;
+    right:-10px;
+    background:#192718;
+    color:#cae2e6;
+    font-size:10px;
+    padding:2px 6px;
+    border-radius:50%;
+}
+
+/* =========================
+   PRODUCTOS
+========================= */
+
+.producto-card{
+    transition:0.2s ease;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.producto-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+.img-container{
+    height:260px;
+    background:#f7f7f7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.producto-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.3s ease;
+}
+
+.producto-img:hover{
+    transform:scale(1.03);
+}
+
+.producto-nombre{
+    font-size:0.85rem;
+    color:#555;
+    display:-webkit-box;
+    -webkit-line-clamp:1;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    min-height:38px;
+}
+
+.precio{
+    font-size:1.2rem;
+    font-weight:bold;
+    color:#75d6e7;
+}
+
+/* =========================
+   FAVORITOS
+========================= */
+
+.favorito-btn{
+    border-radius:50%;
+    width:36px;
+    height:36px;
+    background:white;
+    border:1px solid #ddd;
+    transition:0.2s ease;
+}
+
+.favorito-btn:hover{
+    transform:scale(1.1);
+    background:#ffe6ea;
+}
+
+/* =========================
+   PERFIL
+========================= */
+
+.perfil-wrapper{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background-color:#e9ecef;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.icono-perfil{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.perfil-wrapper img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.perfil-wrapper i{
+    font-size:1.4rem;
+    color:#6c757d;
+}
+
+.perfil-trigger{
+    display:flex;
+    align-items:center;
+}
+
+.edit-icon{
+    position:absolute;
+    top:38px;
+    right:12px;
+    cursor:pointer;
+    color:#6c757d;
+    font-size:1.2rem;
+}
+
+.edit-icon:hover{
+    color:#000;
+}
+
+/* =========================
+   DROPDOWN PERFIL
+========================= */
+
+.dropdown-perfil{
+    position:relative;
+}
+
+.menu-perfil{
+    position:absolute;
+    top:40px;
+    right:0;
+    background-color:#ffffff;
+    border-radius:10px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.15);
+    min-width:180px;
+    display:none;
+    z-index:1000;
+    overflow:hidden;
+    transition:0.1em;
+}
+
+.menu-perfil a,
+.menu-perfil button{
+    width:100%;
+    padding:10px 15px;
+    background:none;
+    border:none;
+    text-align:left;
+    font-size:14px;
+    color:#333;
+    text-decoration:none;
+    transition:0.1em;
+}
+
+.dropdown-perfil:hover .menu-perfil,
+.menu-perfil:hover{
+    display:block;
+}
+
+.menu-perfil form{
+    margin:0;
+    padding:0;
+}
+
+.menu-perfil .dropdown-item{
+    display:block;
+    width:100%;
+}
+
+/* =========================
+   COMENTARIOS
+========================= */
+
+.comentario-item{
+    background:#f9f9f9;
+    padding:10px;
+    border-radius:10px;
+}
+
+#comentario{
+    border-radius:20px;
+}
+
+#btnEnviar{
+    border-radius:50%;
+    width:40px;
+    height:40px;
+    color:#192718;
+}
+
+.comentario-box{
+    background:#f8f9fa;
+    border-radius:12px;
+    padding:12px 15px;
+    margin-bottom:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.comentario-box strong{
+    font-size:14px;
+    color:#333;
+}
+
+.comentario-box p{
+    margin:5px 0 0;
+    font-size:14px;
+}
+
+.estrellas{
+    color:#f5b301;
+    font-size:14px;
+}
+
+#mensajeAgregado{
+    transition:opacity 0.5s ease;
+}
+
+/* =========================
+   DIALOGFLOW
+========================= */
+
+df-messenger{
+    --df-messenger-button-titlebar-color:#cfdddf;
+    --df-messenger-chat-background-color:#afe4ec;
+    --df-messenger-font-color:#192718;
+    --df-messenger-send-icon:#cfdddf;
+    --df-messenger-user-message:#cfdddf;
+}
+
+/* =========================
+    PERFIL - DROPDOWN
+========================= */
+.perfil-wrapper {
+
+    width:35px;
+    height:35px;
+
+    border-radius:50%;
+
+    background:#e9ecef;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+}
+
+.icono-perfil {
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.perfil-wrapper i {
+
+    font-size:1.4rem;
+
+    color:#6c757d;
+
+}
+
+.perfil-trigger {
+
+    position:relative;
+
+    cursor:pointer;
+
+}
+
+.dropdown-perfil {
+
+    position:relative;
+
+}
+
+.menu-perfil {
+
+    position:absolute;
+
+    top:45px;
+
+    right:0;
+
+    background:white;
+
+    border-radius:12px;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.15);
+
+    min-width:200px;
+
+    display:none;
+
+    z-index:999;
+
+    overflow:hidden;
+
+}
+
+.dropdown-perfil:hover .menu-perfil {
+
+    display:block;
+
+}
+
+.menu-perfil .dropdown-item {
+
+    display:block;
+
+    width:100%;
+
+    padding:12px 15px;
+
+    text-decoration:none;
+
+    border:none;
+
+    background:none;
+
+    text-align:left;
+
+    color:#333;
+
+    transition:.2s;
+
+}
+
+.menu-perfil .dropdown-item:hover {
+
+    background:#f5f5f5;
+
+}
