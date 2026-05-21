@@ -3,7 +3,6 @@
 import {
 
     ref,
-    computed,
     onMounted,
     onUnmounted
 
@@ -36,19 +35,24 @@ const cargarUsuario = () => {
 
 }
 
-// CARGAR USUARIO
 onMounted(() => {
 
     cargarUsuario()
+
+    cargarCarrito()
 
     window.addEventListener(
         'usuarioActualizado',
         cargarUsuario
     )
 
+    window.addEventListener(
+        'carritoActualizado',
+        cargarCarrito
+    )
+
 })
 
-// LIMPIAR EVENTO
 onUnmounted(() => {
 
     window.removeEventListener(
@@ -56,9 +60,13 @@ onUnmounted(() => {
         cargarUsuario
     )
 
+    window.removeEventListener(
+        'carritoActualizado',
+        cargarCarrito
+    )
+
 })
 
-// LOGOUT
 const logout = () => {
 
     localStorage.removeItem('token')
@@ -73,13 +81,18 @@ const logout = () => {
 
 }
 
-// CARGAR CARRITO
 const cargarCarrito = async () => {
 
     const token =
         localStorage.getItem('token')
 
-    if(!token) return
+    if(!token){
+
+        carritoCount.value = 0
+
+        return
+
+    }
 
     try {
 
@@ -108,19 +121,6 @@ const cargarCarrito = async () => {
 
 }
 
-// CARGAR CONTADOR
-onMounted(() => {
-
-    cargarCarrito()
-
-})
-
-// ESCUCHAR ACTUALIZACIÓN
-window.addEventListener(
-    'carritoActualizado',
-    cargarCarrito
-)
-
 </script>
 
 <template>
@@ -136,9 +136,9 @@ window.addEventListener(
             data-bs-target="#menuLateral"
         >
             <i class="bi bi-list"></i>
-                </button>
+        </button>
 
-                <div class="text-center flex-grow-1">
+        <div class="text-center flex-grow-1">
 
             <RouterLink
                 to="/"
@@ -159,7 +159,7 @@ window.addEventListener(
                 <i class="bi bi-search"></i>
             </a>
 
-            <!--Perfil-->
+            <!-- PERFIL -->
             <div class="dropdown-perfil ms-3">
 
                 <RouterLink
@@ -169,7 +169,11 @@ window.addEventListener(
 
                     <div class="perfil-wrapper">
 
-                        <img v-if="usuario?.foto_perfil" :src=" `http://127.0.0.1:8000/storage/${usuario.foto_perfil}?t=${Date.now()}` " class="icono-perfil" >
+                        <img
+                            v-if="usuario?.foto_perfil"
+                            :src="`${import.meta.env.VITE_API_URL.replace('/api','')}/storage/${usuario.foto_perfil}?t=${Date.now()}`"
+                            class="icono-perfil"
+                        >
 
                         <i
                             v-else
@@ -179,8 +183,6 @@ window.addEventListener(
                     </div>
 
                 </RouterLink>
-
-                <!-- MENÚ SOLO SI HAY LOGIN -->
 
                 <div
                     v-if="usuario"
@@ -218,8 +220,10 @@ window.addEventListener(
                 </div>
 
             </div>
-            
+
+            <!-- CARRITO SOLO CLIENTE / PÚBLICO -->
             <RouterLink
+                v-if="!usuario || usuario.ID_rol == 2"
                 to="/carrito"
                 class="ms-3"
             >
@@ -232,7 +236,6 @@ window.addEventListener(
                         {{ carritoCount }}
                     </span>
 
-            
                 </div>
 
             </RouterLink>
@@ -241,7 +244,7 @@ window.addEventListener(
 
     </div>
 
-    <!-- MENU -->
+    <!-- MENU LATERAL -->
     <div
         class="offcanvas offcanvas-start"
         tabindex="-1"
@@ -275,7 +278,6 @@ window.addEventListener(
                         to="/admin/usuarios"
                         class="nav-link active"
                     >
-                        <i class="bi "></i>
                         GESTIÓN DE USUARIOS
                     </RouterLink>
 
@@ -283,7 +285,6 @@ window.addEventListener(
                         to="/admin/productos"
                         class="nav-link active"
                     >
-                        <i class="bi "></i>
                         GESTIÓN DE PRODUCTOS
                     </RouterLink>
 
@@ -291,7 +292,6 @@ window.addEventListener(
                         to="/admin/dashboard"
                         class="nav-link active"
                     >
-                        <i class="bi"></i>
                         DASHBOARD
                     </RouterLink>
 
@@ -299,7 +299,6 @@ window.addEventListener(
                         to="/admin/backup"
                         class="nav-link active"
                     >
-                        <i class="bi"></i>
                         RESPALDO BD
                     </RouterLink>
 
@@ -327,6 +326,22 @@ window.addEventListener(
                         MI PERSONALIZADO
                     </RouterLink>
 
+                    <RouterLink
+                        v-if="usuario && usuario.ID_rol == 2"
+                        to="/favoritos"
+                        class="nav-link active"
+                    >
+                        MIS FAVORITOS
+                    </RouterLink>
+
+                    <RouterLink
+                        v-if="usuario && usuario.ID_rol == 2"
+                        to="/carrito"
+                        class="nav-link active"
+                    >
+                        MI CARRITO
+                    </RouterLink>
+
                 </template>
 
             </ul>
@@ -350,7 +365,9 @@ window.addEventListener(
 
     <!-- CONTENIDO -->
     <main class="container mt-4">
+
         <router-view />
+
     </main>
 
     <!-- FOOTER -->

@@ -40,7 +40,7 @@ const imagenProducto = computed(() => {
 
     }
 
-    return `http://127.0.0.1:8000/storage/${props.producto.imagen}`
+    return `${import.meta.env.VITE_API_URL.replace('/api','')}/storage/${props.producto.imagen}`
 
 })
 
