@@ -26,7 +26,6 @@ const verificarCodigo = async () => {
 
             '/verificar-2fa',
 
-           
             {
 
                 correo: localStorage.getItem('correo'),
@@ -34,47 +33,36 @@ const verificarCodigo = async () => {
                 codigo: codigo.value
 
             }
-            
-
 
         )
 
-        // GUARDAR TOKEN
         localStorage.setItem(
-
             'token',
-
             response.data.token
-
         )
 
-        // GUARDAR USUARIO COMPLETO
         localStorage.setItem(
-
             'usuario',
-
-            JSON.stringify(
-                response.data.usuario
-            )
-
+            JSON.stringify(response.data.usuario)
         )
 
         window.dispatchEvent(
             new Event('usuarioActualizado')
         )
 
-
-        // AGREGAR TOKEN GLOBAL A AXIOS
         api.defaults.headers.common[
             'Authorization'
         ] = `Bearer ${response.data.token}`
 
-        // REDIRECCIÓN
         router.push('/')
 
-    } catch(error){
+    } catch(err){
 
-        console.log(error)
+        console.log(err.response?.data || err)
+
+        error.value =
+            err.response?.data?.message ||
+            'No se pudo verificar el código'
 
     }
 

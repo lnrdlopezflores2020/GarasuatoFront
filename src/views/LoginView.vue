@@ -30,11 +30,11 @@ const login = async () => {
                     contrasena: contrasena.value
 
                 }
-                
-
-
         )
 
+        console.log('RESPUESTA LOGIN:', response.data)
+        
+        
         console.log(response.data)
 
         localStorage.setItem(
@@ -51,16 +51,17 @@ const login = async () => {
         )
 
         // IR A VERIFICACIÓN 2FA
-        router.push('/verificar-2fa')
+        window.location.href = '/verificar-2fa'
 
     } catch (err) {
 
-        console.log(err)
+    console.log('ERROR LOGIN:', err.response?.data || err)
 
-        error.value =
-            'Correo o contraseña incorrectos'
+    error.value =
+        err.response?.data?.message ||
+        'Correo o contraseña incorrectos'
 
-    }
+}
 }
 </script>
 
