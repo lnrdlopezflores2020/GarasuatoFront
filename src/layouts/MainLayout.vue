@@ -171,11 +171,7 @@ const cargarCarrito = async () => {
 
                         <img
                             v-if="usuario?.foto_perfil"
-                            :src="
-                                usuario.foto_perfil.startsWith('http')
-                                    ? usuario.foto_perfil.replace('http://127.0.0.1:8000', import.meta.env.VITE_API_URL.replace('/api',''))
-                                    : `${import.meta.env.VITE_API_URL.replace('/api','')}/storage/${usuario.foto_perfil}?t=${Date.now()}`
-                            "
+                            :src="usuario.foto_perfil"
                             class="icono-perfil"
                         >
 

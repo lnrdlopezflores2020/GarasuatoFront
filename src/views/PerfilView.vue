@@ -230,11 +230,7 @@ onMounted(() => {
 
                         previewFoto ||
 
-                        (
-                            usuario.foto_perfil?.startsWith('http')
-                                ? usuario.foto_perfil.replace('http://127.0.0.1:8000', import.meta.env.VITE_API_URL.replace('/api',''))
-                                : `${import.meta.env.VITE_API_URL.replace('/api','')}/storage/${usuario.foto_perfil}`
-                        )
+                        usuario.foto_perfil
 
                     "
 
