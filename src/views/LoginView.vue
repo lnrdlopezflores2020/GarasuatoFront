@@ -61,7 +61,7 @@ const login = async () => {
         err.response?.data?.message ||
         'Correo o contraseña incorrectos'
 
-}
+    }
 }
 </script>
 
